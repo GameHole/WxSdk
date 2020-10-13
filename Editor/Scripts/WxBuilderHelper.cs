@@ -51,7 +51,6 @@ public class WxBuilderHelper
 
         try
         {
-            Debug.Log(sourceDir);
             string[] fileList = Directory.GetFiles(sourceDir, "*");
             foreach (string f in fileList)
             {
