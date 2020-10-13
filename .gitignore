@@ -6,6 +6,5 @@
 /obj
 /*.sln
 /*.csproj
-/*.bat
 /*.apk
 /wxTest
