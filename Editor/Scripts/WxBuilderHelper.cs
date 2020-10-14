@@ -28,8 +28,8 @@ public class WxBuilderHelper
         string mmPath = AssetDatabase.GUIDToAssetPath("034dd7365e62353469769ea304901074");
         string entryJavaTxt = AssetDatabase.GUIDToAssetPath("e2544a5d6d6c72c4ba194a7f31faf56e");
         string pluginPath = "Assets/Plugins";
-        string andPath = Path.Combine(pluginPath+ "/Android", Path.GetFileName(aarsPath));
-        string iosPath = Path.Combine(pluginPath + "/IOS", Path.GetFileName(mmPath));
+        string andPath = pluginPath + "/Android";
+        string iosPath = pluginPath + "/IOS";
         if (!Directory.Exists(andPath))
         {
             Directory.CreateDirectory(andPath);
@@ -44,28 +44,20 @@ public class WxBuilderHelper
     }
     static void CopyDirectory(string sourceDir, string destDir)
     {
+        destDir = Path.Combine(destDir, Path.GetFileName(sourceDir));
         if (!Directory.Exists(destDir))
         {
             Directory.CreateDirectory(destDir);
         }
-
-        try
+        foreach (var item in Directory.GetFiles(sourceDir))
         {
-            string[] fileList = Directory.GetFiles(sourceDir, "*");
-            foreach (string f in fileList)
-            {
-                // Remove path from the file name.
-                string fName = f.Substring(sourceDir.Length + 1);
-                if (fName.Contains(".meta")) continue;
-                // Use the Path.Combine method to safely append the file name to the path.
-                // Will overwrite if the destination file already exists.
-                File.Copy(Path.Combine(sourceDir, fName), Path.Combine(destDir, fName), true);
-            }
+            string fName = Path.GetFileName(item);
+            if (fName.Contains(".meta")) continue;
+            File.Copy(item, Path.Combine(destDir, fName), true);
         }
-
-        catch (DirectoryNotFoundException dirNotFound)
+        foreach (var item in Directory.GetDirectories(sourceDir))
         {
-            throw new DirectoryNotFoundException(dirNotFound.Message);
+            CopyDirectory(item, destDir);
         }
     }
 }
