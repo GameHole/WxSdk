@@ -14,7 +14,7 @@ public static class XmlSetter
         string plugpath = $"{plgpath}/AndroidManifest.xml";
         if (!File.Exists(plugpath))
         {
-            string con = File.ReadAllText(AssetDatabase.GUIDToAssetPath("8fd79680135600b4392dcdae706b5f12"));
+            string con = File.ReadAllText(AssetDatabase.GUIDToAssetPath("8522b410d95a7cd4397ecdbe10efe186"));
             if (!Directory.Exists(plgpath))
                 Directory.CreateDirectory(plgpath);
             File.WriteAllText(plugpath, con);

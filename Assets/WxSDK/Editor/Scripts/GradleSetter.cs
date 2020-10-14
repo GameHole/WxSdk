@@ -13,8 +13,9 @@ public class GradleSetter
         string[] paths = Directory.GetFiles(dir, "*.gradle", SearchOption.TopDirectoryOnly);
         if (paths.Length == 0)
         {
-            string tmpFile = AssetDatabase.GUIDToAssetPath("a6eacb6c9baa442459d03659241ce5df");
-            File.Copy(tmpFile, Path.Combine(dir, Path.GetFileName(tmpFile)));
+            string tmpFile = AssetDatabase.GUIDToAssetPath("0e5f4adfd825e9049bf286bdb9a785c7");
+            string strs = File.ReadAllText(tmpFile);
+            File.WriteAllText($"{dir}/{Path.GetFileNameWithoutExtension(tmpFile)}.gradle",strs);
         }
         else
         {
