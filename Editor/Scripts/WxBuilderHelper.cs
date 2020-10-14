@@ -7,20 +7,20 @@ using System.IO;
 public class WxBuilderHelper
 {
     //[MenuItem("WX/设置SDK参数")]
-    static void SetValues()
-    {
-        string entryJavaTxt = AssetDatabase.GUIDToAssetPath("8d0d0ee489b31744fbc356d241c89f78");
-        string andPath = AssetDatabase.GUIDToAssetPath("7fac2c4dd83f56442b8430a7d4492144");
-        if (!Directory.Exists(andPath))
-        {
-            Directory.CreateDirectory(andPath);
-        }
-        string file = File.ReadAllText(entryJavaTxt);
-        File.WriteAllText(Path.Combine(andPath, Path.GetFileName(entryJavaTxt)), file.Replace("#PACKAGE#", Application.identifier));
-        XmlSetter.SetXml();
-        GradleSetter.SetGradle();
-        AssetDatabase.Refresh();
-    }
+    //static void SetValues()
+    //{
+    //    string entryJavaTxt = AssetDatabase.GUIDToAssetPath("8d0d0ee489b31744fbc356d241c89f78");
+    //    string andPath = AssetDatabase.GUIDToAssetPath("7fac2c4dd83f56442b8430a7d4492144");
+    //    if (!Directory.Exists(andPath))
+    //    {
+    //        Directory.CreateDirectory(andPath);
+    //    }
+    //    string file = File.ReadAllText(entryJavaTxt);
+    //    File.WriteAllText(Path.Combine(andPath, Path.GetFileName(entryJavaTxt)), file.Replace("#PACKAGE#", Application.identifier));
+    //    XmlSetter.SetXml();
+    //    GradleSetter.SetGradle();
+    //    AssetDatabase.Refresh();
+    //}
     [MenuItem("WX/设置SDK参数")]
     static void SetValues_1()
     {
@@ -35,7 +35,7 @@ public class WxBuilderHelper
             Directory.CreateDirectory(andPath);
         }
         string file = File.ReadAllText(entryJavaTxt);
-        File.WriteAllText(Path.Combine(andPath, Path.GetFileName(entryJavaTxt)), file.Replace("#PACKAGE#", Application.identifier));
+        File.WriteAllText(Path.Combine(pluginPath + "/Android", Path.GetFileName(entryJavaTxt)), file.Replace("#PACKAGE#", Application.identifier));
         CopyDirectory(aarsPath, andPath);
         CopyDirectory(mmPath, iosPath);
         XmlSetter.SetXml();
