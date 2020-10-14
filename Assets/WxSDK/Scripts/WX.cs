@@ -10,7 +10,6 @@ class WxMsgRecever : MonoBehaviour
 {
     public void onRecv(string msg)
     {
-       
         Debug.Log($"unity on  receve msg -> {msg}");
         string[] datas = msg.Split(',');
         if (datas.Length > 0)
