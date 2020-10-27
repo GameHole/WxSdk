@@ -1,6 +1,8 @@
 {
     "name": "Wx.Editor",
-    "references": [],
+    "references": [
+        "GUID:84ffd2ae0c425e941964896fa1a44407"
+    ],
     "optionalUnityReferences": [],
     "includePlatforms": [
         "Editor"

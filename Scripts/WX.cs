@@ -157,6 +157,8 @@ public static class WX
         return true;
 #elif UNITY_IOS
         return _isWechatInstalled();
+#else
+        return false;
 #endif
     }
 }

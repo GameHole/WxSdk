@@ -24,8 +24,8 @@ public class WxBuilderHelper
     [MenuItem("WX/设置SDK参数")]
     static void SetValues_1()
     {
-        string aarsPath = AssetDatabase.GUIDToAssetPath("7fac2c4dd83f56442b8430a7d4492144");
-        string mmPath = AssetDatabase.GUIDToAssetPath("034dd7365e62353469769ea304901074");
+        //string aarsPath = AssetDatabase.GUIDToAssetPath("7fac2c4dd83f56442b8430a7d4492144");
+        //string mmPath = AssetDatabase.GUIDToAssetPath("034dd7365e62353469769ea304901074");
         string entryJavaTxt = AssetDatabase.GUIDToAssetPath("e2544a5d6d6c72c4ba194a7f31faf56e");
         string pluginPath = "Assets/Plugins";
         string andPath = pluginPath + "/Android";
@@ -36,8 +36,8 @@ public class WxBuilderHelper
         }
         string file = File.ReadAllText(entryJavaTxt);
         File.WriteAllText(Path.Combine(pluginPath + "/Android", Path.GetFileNameWithoutExtension(entryJavaTxt)+".java"), file.Replace("#PACKAGE#", Application.identifier));
-        CopyDirectory(aarsPath, andPath);
-        CopyDirectory(mmPath, iosPath);
+        //CopyDirectory(aarsPath, andPath);
+        //CopyDirectory(mmPath, iosPath);
         XmlSetter.SetXml();
         GradleSetter.SetGradle();
         AssetDatabase.Refresh();
