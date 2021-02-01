@@ -33,6 +33,20 @@ public static class XmlHelper
             manifestNode.AppendChild(ele);
         }
     }
+    public static void RemovePermission(this XmlDocument xdoc, string value)
+    {
+        var node = FindNode(xdoc, "/manifest/uses-permission", "android:name", value);
+        //UnityEngine.Debug.Log(node);
+        if (node != null)
+        {
+            var manifestNode = xdoc.SelectSingleNode("/manifest");
+           
+            manifestNode.RemoveChild(node);
+            //var ele = xdoc.CreateElement("uses-permission");
+            //ele.Attributes.Append(ele.CreateAttribute("name", value));
+            //manifestNode.AppendChild(ele);
+        }
+    }
     public static XmlElement AppendAttribute(this XmlElement element, string attributeName, string value)
     {
         element.Attributes.Append(element.CreateAttribute(attributeName, value));
