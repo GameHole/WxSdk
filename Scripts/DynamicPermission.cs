@@ -5,6 +5,7 @@ namespace MiniGameSDK
 {
     public static class DynamicPermission
     {
+#if UNITY_ANDROID
         static AndroidJavaClass permission;
         public static void GetPermission(params string[] permissions)
         {
@@ -17,6 +18,7 @@ namespace MiniGameSDK
                 permission.CallStatic("Get", "mark", ActivityGeter.GetActivity(), permissions);
             }
         }
+#endif
     }
 }
 
