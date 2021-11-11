@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using MiniGameSDK;
-public class DynamicPermissionEditor : IParamSettng
+using UnityEditor.Android;
+#if USE_COSTOM_PERM
+public class DynamicPermissionEditor : IPostGenerateGradleAndroidProject
 {
-    public void SetParam()
+    public int callbackOrder => 0;
+
+    public void OnPostGenerateGradleAndroidProject(string path)
     {
-        GradleHelper.SetImplementation("com.lovedise:permissiongen:0.0.6");
+        var gd = GradleHelper.Open($"{path}/build.gradle");
+        gd.SetImplementation("com.lovedise.permissiongen:0.0.6");
+        gd.Save();
     }
 }
+#endif

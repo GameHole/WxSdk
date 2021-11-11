@@ -4,10 +4,13 @@ using UnityEditor;
 using System.IO;
 public static class AssetHelper
 {
-    public static T CreateAsset<T>() where T : AScriptableObject
+    static string _basicPath = "Assets/Resources";
+    public static T CreateAsset<T>(string basicPath=null) where T : AScriptableObject
     {
         var res = ScriptableObject.CreateInstance<T>();
-        string path = "Assets/Resources/" + res.filePath+".asset";
+        if (string.IsNullOrEmpty(basicPath))
+            basicPath = _basicPath;
+        string path = $"{basicPath}/{res.filePath}.asset";
         if (File.Exists(path))
         {
             return Resources.Load<T>(path);

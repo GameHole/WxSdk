@@ -18,6 +18,12 @@ public static class XmlHelper
         xml.Load(plgpath);
         return xml;
     }
+    public static XmlDocument Open(string path)
+    {
+        XmlDocument xml = new XmlDocument();
+        xml.Load(path);
+        return xml;
+    }
     public static void Save(this XmlDocument xml)
     {
         xml.Save(plgpath);
@@ -47,19 +53,19 @@ public static class XmlHelper
             //manifestNode.AppendChild(ele);
         }
     }
-    public static XmlElement AppendAttribute(this XmlElement element, string attributeName, string value)
+    public static XmlElement AppendAttribute(this XmlElement element, string attributeName, string value, string attrNamespace = "apk/res/android")
     {
-        element.Attributes.Append(element.CreateAttribute(attributeName, value));
+        element.Attributes.Append(element.CreateAttribute(attributeName, value, attrNamespace));
         return element;
     }
-    public static XmlAttribute CreateAttribute(this XmlNode node, string attributeName, string value)
+    public static XmlAttribute CreateAttribute(this XmlNode node, string attributeName, string value,string attrNamespace = "apk/res/android")
     {
         try
         {
             XmlDocument doc = node.OwnerDocument;
             XmlAttribute attr = null;
 
-            attr = doc.CreateAttribute(attributeName, "http://schemas.android.com/apk/res/android");
+            attr = doc.CreateAttribute(attributeName, $"http://schemas.android.com/{attrNamespace}");
             attr.Value = value;
             node.Attributes.SetNamedItem(attr);
             return attr;
